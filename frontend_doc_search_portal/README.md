@@ -154,12 +154,12 @@ docker build \
   --build-arg VITE_API_BASE_URL=http://localhost:5000/v1/api \
   -t legal-doc-frontend .
 
-docker run -p 80:80 legal-doc-frontend
+docker run -p 5173:80 legal-doc-frontend
 ```
 
 > `VITE_*` env vars are baked at **build time**. Pass `VITE_API_BASE_URL` as a build arg.
 
-App available at `http://localhost:80`
+App available at `http://localhost:5173`
 
 ---
 

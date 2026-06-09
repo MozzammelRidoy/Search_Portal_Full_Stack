@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
@@ -45,7 +44,11 @@ const getCorsOrigin = async (): Promise<string[]> => {
       // TODO: Replace with actual database fetch
       // const cors = await yourCorsOriginFromDB();
       // value = cors?.origin || [];
-      value = ['http://localhost:5173', 'http://localhost:5174']
+      value = [
+        'http://localhost',
+        'http://localhost:5173',
+        'http://localhost:5174'
+      ]
       create_cache_into_RAM('cors_origin', value)
     }
 

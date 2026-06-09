@@ -1,5 +1,5 @@
 # Build stage
-FROM node:20-alpine AS build
+FROM --platform=linux/amd64 node:20-slim AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
@@ -11,7 +11,7 @@ ENV VITE_API_TIMEOUT=$VITE_API_TIMEOUT
 RUN npm run build
 
 # Serve stage
-FROM nginx:alpine
+FROM --platform=linux/amd64 nginx:stable
 COPY --from=build /app/dist /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

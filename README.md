@@ -62,7 +62,7 @@ Minimum required values in `backend_doc_search_portal/.env`:
 ```env
 PORT=5000
 NODE_ENV=production
-CLIENT_SIDE_URL=http://localhost:80
+CLIENT_SIDE_URL=http://localhost:5173
 BACKEND_SIDE_URL=http://localhost:5000
 ```
 
@@ -70,34 +70,54 @@ BACKEND_SIDE_URL=http://localhost:5000
 
 ## Run with Docker Compose
 
-### Run full stack (backend + frontend together)
+### Full stack — attached mode (logs visible)
 
 ```bash
 docker compose up --build
 ```
 
+### Full stack — detached mode (runs in background)
+
+```bash
+docker compose up --build -d
+```
+
+### Individual service only
+
+```bash
+docker compose up --build backend    # backend only
+docker compose up --build frontend   # frontend only
+```
+
+### View logs (detached mode)
+
+```bash
+docker compose logs -f               # all services
+docker compose logs -f backend       # backend only
+docker compose logs -f frontend      # frontend only
+```
+
+### Stop containers
+
+```bash
+docker compose stop                  # stop, keep containers
+docker compose down                  # stop and remove containers
+docker compose down --volumes        # stop, remove containers + volumes
+```
+
+### Rebuild without cache
+
+```bash
+docker compose build --no-cache
+docker compose up
+```
+
+### Access
+
 | Service  | URL                   |
 | -------- | --------------------- |
-| Frontend | http://localhost:80   |
+| Frontend | http://localhost:5173 |
 | Backend  | http://localhost:5000 |
-
-### Run backend only
-
-```bash
-docker compose up --build backend
-```
-
-### Run frontend only
-
-```bash
-docker compose up --build frontend
-```
-
-### Stop all containers
-
-```bash
-docker compose down
-```
 
 > `VITE_API_BASE_URL` is baked into the frontend image at build time. To target a different backend host or port, update `VITE_API_BASE_URL` in `docker-compose.yml` before running `--build`.
 
