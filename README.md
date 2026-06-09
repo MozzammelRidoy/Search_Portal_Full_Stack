@@ -107,8 +107,8 @@ docker compose down
 
 Full documentation for each service — architecture, API reference, environment variables, and more:
 
-- **Backend** → [backend_doc_search_portal](https://github.com/MozzammelRidoy/Search_Portal_Full_Stack/tree/main/backend_doc_search_portal)
-- **Frontend** → [frontend_doc_search_portal](https://github.com/MozzammelRidoy/Search_Portal_Full_Stack/tree/main/frontend_doc_search_portal)
+- **Backend** → [backend_doc_search_portal](https://github.com/MozzammelRidoy/Search_Portal_Full_Stack/blob/main/backend_doc_search_portal/README.md)
+- **Frontend** → [frontend_doc_search_portal](https://github.com/MozzammelRidoy/Search_Portal_Full_Stack/tree/main/frontend_doc_search_portal/README.md)
 
 ---
 
