@@ -4,9 +4,9 @@
  */
 export type TEmailFormat = {
   /** HTML body content of the email */
-  emailBody: string;
+  emailBody: string
   /** Subject line of the email */
-  subject: string;
+  subject: string
   /** Optional plain text alternative body */
-  text?: string;
-};
+  text?: string
+}

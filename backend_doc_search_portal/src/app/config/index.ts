@@ -1,8 +1,8 @@
-import dotenv from 'dotenv';
-import path from 'path';
+import dotenv from 'dotenv'
+import path from 'path'
 
 // Load environment variables from .env file
-dotenv.config({ path: path.join(process.cwd(), '.env') });
+dotenv.config({ path: path.join(process.cwd(), '.env') })
 
 /**
  * Ensure environment variable is set
@@ -11,11 +11,11 @@ dotenv.config({ path: path.join(process.cwd(), '.env') });
  * @throws Error if environment variable is not set
  */
 function ensureEnv(key: string): string {
-  const value = process.env[key];
+  const value = process.env[key]
   if (!value) {
-    throw new Error(`Environment variable ${key} is required but not set.`);
+    throw new Error(`Environment variable ${key} is required but not set.`)
   }
-  return value;
+  return value
 }
 
 /**
@@ -35,7 +35,7 @@ const config = {
   email_sender_email_app_pass: ensureEnv('EMAIL_SENDER_EMAIL_APP_PASS'),
   email_sender_name: ensureEnv('EMAIL_SENDER_NAME'),
   email_reply_to: ensureEnv('EMAIL_REPLY_TO'),
-  email_test_recipient: ensureEnv('EMAIL_TEST_RECIPIENTS'),
-};
+  email_test_recipient: ensureEnv('EMAIL_TEST_RECIPIENTS')
+}
 
-export default config;
+export default config

@@ -1,32 +1,32 @@
-import { Response } from 'express';
+import { Response } from 'express'
 
 /**
  * Metadata type for paginated responses
  */
 type TMeta = {
-  page: number;
-  limit: number;
-  totalData: number;
-  totalPage: number;
-};
+  page: number
+  limit: number
+  totalData: number
+  totalPage: number
+}
 
 /**
  * Standardized response structure
  */
 type TSendResponse<T> = {
-  status: number;
-  success: boolean;
-  message?: string;
-  meta?: TMeta;
-  data: T;
-};
+  status: number
+  success: boolean
+  message?: string
+  meta?: TMeta
+  data: T
+}
 
 /**
  * Sends a standardized JSON response
  * @param res - Express Response object
  * @param data - Response data containing status, success, message, meta, and actual data
  * @returns Express Response with JSON payload
- * 
+ *
  * @example
  * // Basic success response
  * sendResponse(res, {
@@ -35,7 +35,7 @@ type TSendResponse<T> = {
  *   message: 'User created successfully',
  *   data: newUser
  * });
- * 
+ *
  * @example
  * // Paginated response
  * sendResponse(res, {
@@ -50,7 +50,7 @@ type TSendResponse<T> = {
  *   },
  *   data: users
  * });
- * 
+ *
  * @example
  * // Error response
  * sendResponse(res, {
@@ -67,7 +67,7 @@ const sendResponse = <T>(res: Response, data: TSendResponse<T>) => {
     message: data.message,
     meta: data.meta,
     data: data.data
-  });
-};
+  })
+}
 
-export default sendResponse;
+export default sendResponse

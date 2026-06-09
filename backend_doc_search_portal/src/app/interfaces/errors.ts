@@ -3,19 +3,19 @@
  */
 export type TErrorSource = {
   /** Field path or identifier where the error occurred */
-  path: string | number;
+  path: string | number
   /** Error message describing the issue */
-  message: string;
-};
+  message: string
+}
 
 /**
  * Generic error response structure
  */
 export type TGenericErrorResponse = {
   /** HTTP status code */
-  statusCode: number;
+  statusCode: number
   /** Error message */
-  message: string;
+  message: string
   /** Array of error sources with detailed information */
-  errorSources: TErrorSource[];
-};
+  errorSources: TErrorSource[]
+}
