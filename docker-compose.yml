@@ -1,0 +1,71 @@
+# =============================================================================
+# docker-compose.yml — Legal Document Search Portal (Full Stack)
+# =============================================================================
+#
+# PREREQUISITE:
+#   Copy backend env file before first run:
+#     cp backend_doc_search_portal/.env.example backend_doc_search_portal/.env
+#   Edit backend_doc_search_portal/.env with real values.
+#
+# -----------------------------------------------------------------------------
+# FULL STACK — run backend + frontend together:
+#
+#   docker compose up --build          # build and start (attached)
+#   docker compose up --build -d       # build and start (detached)
+#   docker compose down                # stop and remove containers
+#   docker compose logs -f             # stream logs
+#
+# Access:
+#   Frontend  →  http://localhost:80
+#   Backend   →  http://localhost:5000
+#
+# -----------------------------------------------------------------------------
+# INDIVIDUAL SERVICE — run only one:
+#
+#   docker compose up --build backend
+#   docker compose up --build frontend
+#
+# -----------------------------------------------------------------------------
+# INDIVIDUAL DOCKER RUN — without compose:
+#
+# Backend:
+#   docker build -t legal-doc-backend ./backend_doc_search_portal
+#   docker run -p 5000:5000 --env-file backend_doc_search_portal/.env legal-doc-backend
+#
+# Frontend:
+#   docker build \
+#     --build-arg VITE_API_BASE_URL=http://localhost:5000/v1/api \
+#     --build-arg VITE_API_TIMEOUT=10000 \
+#     -t legal-doc-frontend ./frontend_doc_search_portal
+#   docker run -p 80:80 legal-doc-frontend
+#
+# =============================================================================
+
+services:
+  backend:
+    build:
+      context: ./backend_doc_search_portal
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./backend_doc_search_portal/.env
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend_doc_search_portal
+      dockerfile: Dockerfile
+      args:
+        # VITE_* vars are baked into the static build at image build time.
+        # If the backend runs on a different host/port, change VITE_API_BASE_URL here.
+        VITE_API_BASE_URL: http://localhost:5000/v1/api
+        VITE_API_TIMEOUT: 10000
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
